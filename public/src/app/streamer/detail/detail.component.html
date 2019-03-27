@@ -1,0 +1,26 @@
+<ng-container *ngIf="streamer; else noStreamer">
+    <div class="row">
+        <div class="col-xs-1-12">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Streamer</h3>
+              <div class="card-text">
+                <h2>
+                  ID: {{streamer.id}}
+                </h2>
+                <h2>
+                  Username: {{streamer.username}}
+                </h2>
+                <h2>
+                  Email: {{streamer.email}}
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+</ng-container>
+<ng-template #noStreamer>
+  <h1>Không có người dùng này</h1>
+</ng-template>
