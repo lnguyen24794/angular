@@ -14,8 +14,11 @@ import {RestFulService} from "./shared/services/restFul.service";
 import {StreamerAuthGuard} from "./shared/streamer-auth.guard";
 import {CookieService} from "ngx-cookie-service";
 
+import { LoadingComponent } from './components/loading/loading.component';
+import { EditComponent } from './edit/edit.component';
+
 @NgModule({
-  declarations: [StreamerComponent, ListComponent, AddComponent, DetailComponent, LoginComponent],
+  declarations: [StreamerComponent, ListComponent, AddComponent, DetailComponent, LoginComponent, LoadingComponent, EditComponent],
   imports: [
     CommonModule,
     StreamerRoutingModule,

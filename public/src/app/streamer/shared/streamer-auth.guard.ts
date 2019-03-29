@@ -10,7 +10,7 @@ import {StreamerService} from "./services/streamer.service";
       public streamerService:StreamerService
     ){}
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      if(!this.streamerService.isAuthenticated){
+      if(this.streamerService.getToken()==''){
         this.router.navigate(['streamer/auth/login']);
         return false;
       }
