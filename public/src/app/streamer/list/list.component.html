@@ -8,17 +8,10 @@
     <button (click)="doSearch()" class="btn btn-primary">Search</button>
   </div>
 </div>
-<div *ngIf="loading;else streamersBlock">
-  <h2 style="text-align: center">Đang tải dữ liệu</h2>
-  <div class="spinner" colspan="6">
-    <div class="spinner__bar"></div>
-    <div class="spinner__bar"></div>
-    <div class="spinner__bar"></div>
-    <div class="spinner__bar"></div>
-  </div>
-</div>
+<app-loading *ngIf="loading;else streamersBlock">
+</app-loading>
 <ng-template #streamersBlock>
-  <table class="table table-bordered table-inverse table-responsive">
+  <table class="table table-bordered table-inverse">
     <thead class="thead-inverse">
       <tr>
         <th>STT</th>
@@ -38,21 +31,45 @@
         <td>{{streamer.updated_at}}</td>
         <td>
           <div class="btn-group" role="group" aria-label="">
-            <button type="button" [routerLink]="['/streamers',streamer.id]" class="btn btn-primary">View</button>
-            <button type="button" class="btn btn-success">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" [routerLink]="['/streamers/info',streamer.id]" class="btn btn-primary">View</button>
+            <button type="button" [routerLink]="['/streamers/edit',streamer.id]" class="btn btn-success">Edit</button>
+            <button type="button" data-toggle="modal" data-target="#myModal" (click)="current_streamer=streamer" class="btn btn-danger">Delete</button>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
-  
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-      <ul class="pagination" *ngIf="last_page>1" >
-        <li class="page-item"><a class="page-link"  (click)="prePage()" style="cursor:pointer">Previous</a></li>
-        <li *ngFor="let item of pages;index as i" [class]="current_page==i+1?'page-item active':'page-item'" class="" ><a class="page-link " style="cursor:pointer" (click)="changePage(i+1)">{{i+1}}</a></li>
-      
-        <li class="page-item"><a class="page-link" (click)="nextPage()" style="cursor:pointer">Next</a></li>
-      </ul>
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Streamer {{current_streamer.username?current_streamer.username:''}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Do you want remove this streamer
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+  <ul class="pagination" *ngIf="last_page>1">
+    <li class="page-item"><a class="page-link" (click)="prePage()" style="cursor:pointer">Previous</a></li>
+    <li *ngFor="let item of pages;index as i" [class]="current_page==i+1?'page-item active':'page-item'" class=""><a
+        class="page-link " style="cursor:pointer" (click)="changePage(i+1)">{{i+1}}</a></li>
+
+    <li class="page-item"><a class="page-link" (click)="nextPage()" style="cursor:pointer">Next</a></li>
+  </ul>
 
 </ng-template>

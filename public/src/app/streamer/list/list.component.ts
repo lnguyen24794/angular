@@ -28,6 +28,7 @@ export class ListComponent implements OnInit {
   public loading:boolean=true;
   public streamers: any;
   public pages:any;
+  private current_streamer:any;
   public subscription:Subscription;
   public current_page:number = 1;
   public last_page:number = 0;
