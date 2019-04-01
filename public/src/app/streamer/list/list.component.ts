@@ -16,7 +16,7 @@ import {
   HttpHeaders
 } from "@angular/common/http";
 import { Subscription } from 'rxjs';
-
+import {StreamerService} from "../shared/services/streamer.service";
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -37,6 +37,7 @@ export class ListComponent implements OnInit {
     public routerService: Router,
     public activatedRoute: ActivatedRoute,
     private http: HttpClient,
+    public streamerService: StreamerService
     
   ) {
 
@@ -104,5 +105,18 @@ export class ListComponent implements OnInit {
         page:this.current_page?this.current_page:1
       }
     });
+  }
+  remove(){
+    if(this.current_streamer.id != this.streamerService.getId()){
+      this.restFulService.removeStreamer(this.current_streamer.id).subscribe(data=>{
+        if(data.success){
+          this.routerService.navigate(['/streamers/list']);
+        }else{
+          console.log("Do not remove this streamer");
+        }
+      });
+    }else{
+      console.log("Do not remove this streamer");
+    }
   }
 }

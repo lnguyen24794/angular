@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 // Module
 import {StreamerModule} from "./streamer/streamer.module";
+import {InterpreterModule} from "./interpreter/interpreter.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 @NgModule({
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     StreamerModule,
+    InterpreterModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule     

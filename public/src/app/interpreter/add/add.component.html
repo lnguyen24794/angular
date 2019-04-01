@@ -1,0 +1,79 @@
+<app-loading *ngIf="loading;else interpreterBlock">
+</app-loading>
+<ng-template #interpreterBlock>
+    <div class="row">
+      <div class="col-md-12">
+      
+        <div class="card card-outline-secondary">
+          <div class="card-body">
+            <h3 class="text-center">Add interpreter</h3>
+            <hr>
+            <div class="alert alert-info" *ngFor="let mess of message">
+              <a class="close" data-dismiss="alert" href="#">×</a>{{mess}}
+            </div>
+            
+            <form autocomplete="off" [formGroup]="formAdd" class="form" role="form" (ngSubmit)="onSubmit()" novalidate="true">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                      <label for="validationServer01">Username <span class="text-danger">(*)</span></label>
+                      <input type="text" 
+                      [class]="!formAdd.controls.username.dirty?'form-control':formAdd.controls.username.valid?'form-control is-valid':'form-control is-invalid'" 
+                      name="username" formControlName="username">
+                      <div class="invalid-feedback" style="display: block !important;" *ngIf="formAdd.controls.username.errors?.required &&formAdd.controls.username.dirty">
+                        Vui lòng nhập username
+                      </div>
+                      <div class="invalid-feedback" style="display: block !important;" *ngIf="formAdd.controls.username.errors?.minlength &&formAdd.controls.username.dirty">
+                          Chỉ được nhập từ 5 đến 30 kí tự
+                      </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <label for="validationServer02">Password <span class="text-danger">(*)</span></label>
+                      <input type="password" 
+                      [class]="!formAdd.controls.password.dirty?'form-control':formAdd.controls.password.valid?'form-control is-valid':'form-control is-invalid'" 
+                      name="password" formControlName="password">
+                      <div class="invalid-feedback" style="display: block !important;" *ngIf="formAdd.controls.password.errors?.required &&formAdd.controls.password.dirty">
+                          Vui lòng nhập password
+                        </div>
+                        <div class="invalid-feedback" style="display: block !important;" *ngIf="formAdd.controls.password.errors?.minlength &&formAdd.controls.password.dirty">
+                            Chỉ được nhập từ 8 đến 30 kí tự
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <label for="validationServerUsername">Email <span class="text-danger">(*)</span></label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                        </div>
+                        <input type="text" [class]="!formAdd.controls.email.dirty?'form-control':formAdd.controls.email.valid?'form-control is-valid':'form-control is-invalid'"
+                         name="email" formControlName="email"  aria-describedby="inputGroupPrepend3" >
+                        <div class="invalid-feedback" style="display: block !important;" *ngIf="formAdd.controls.email.errors?.required &&formAdd.controls.email.dirty">
+                            Vui lòng nhập email
+                          </div>
+                          <div class="invalid-feedback" style="display: block !important;" *ngIf="formAdd.controls.email.errors?.email &&formAdd.controls.email.dirty">
+                             Chưa đúng định dạng email
+                            </div>
+                          <div class="invalid-feedback" style="display: block !important;" *ngIf="formAdd.controls.email.errors?.minlength &&formAdd.controls.email.dirty">
+                              Chỉ được nhập đến 255 kí tự
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+             
+              <hr>
+              <div class="form-group row">
+                <div class="col-md-3 offset-md-3">
+                  <button class="btn btn-primary btn-md btn-block" type="button" (click)="onReset()"  >Reset</button>
+                </div>
+                <div class="col-md-3">
+                  <button class="btn btn-success btn-md btn-block" [disabled] = "formAdd.invalid" type="submit">Add</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+          
+      </div>
+
+    </div>
+
+</ng-template>

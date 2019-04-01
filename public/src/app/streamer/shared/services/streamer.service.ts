@@ -31,9 +31,8 @@ export class StreamerService {
     return this.cookieService.get("streamer_username");
   }
   public removeAll(){
-    this.cookieService.delete("streamer_id");
-    this.cookieService.delete("streamer_email");
-    this.cookieService.delete("streamer_username");
-    this.cookieService.delete("streamer_token");
+ 
+    this.save('','','','');
+
   }
 }

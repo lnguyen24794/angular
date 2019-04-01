@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1>Streamer Index</h1>
+      <h1>Interpreter Index</h1>
       <div class="container">
         <div class="row" [style.marginBottom.px]="10">
           <nav class="navbar navbar-expand-lg navbar-dark col-md-12" style="background-color:lightslategray;">
@@ -10,18 +10,18 @@
               aria-label="Toggle navigation"></button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
+                <li class="nav-item ">
                   <a class="nav-link" [routerLink]="['list']" routerLinkActive="active"
                     routerLinkActiveOption="{exact:true}">List</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['add']" routerLinkActive="active">Add</a>
+                  <a class="nav-link" [routerLink]="['add']" routerLinkActiveOption="{exact:true}" routerLinkActive="active">Add</a>
                 </li>
 
               </ul>
-              
+              <form class="form-inline my-2 my-lg-0">
                 <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Logout</button>
-              
+              </form>
             </div>
           </nav>
         </div>

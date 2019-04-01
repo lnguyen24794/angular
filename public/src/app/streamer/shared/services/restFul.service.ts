@@ -92,4 +92,14 @@ export class RestFulService{
         }
         return this.http.get<any>('https://localhost:8080/api/streamers/logout',option);
     }
+    removeStreamer(id:any):Observable<any>{
+        let option = {
+            headers: new HttpHeaders({
+                'Content-type':'Application/json',
+                // 'Authorization':'Bearer '+this.streamerService.getToken(),
+                // 'Accept':'appilcation/json'
+            })
+        }
+        return this.http.post<any>('https://localhost:8080/api/manager/streamers/delete/'+id,option);
+    }
 }
