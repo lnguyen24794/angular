@@ -11,9 +11,11 @@ export class AddComponent implements OnInit {
     password:'',
     email:''
   };
+  public file:any=null;
   public formAdd: FormGroup;
   public message:any[];
   public loading=false;
+  public image:any;
   constructor(
     private formBuilder:FormBuilder
   ) { }
@@ -37,15 +39,29 @@ export class AddComponent implements OnInit {
         Validators.required,
         Validators.email,
         Validators.maxLength(255)
+      ]],
+      avatar:['',[
+        Validators.required
       ]]
+    });
+    this.formAdd.valueChanges.subscribe(data=>{
+      console.log(data);
     })
   }
   onSubmit(){
 
-    console.log(this.formAdd);
+    console.log(this.formAdd.value);
     
   }
   onReset(){
     this.formAdd.reset();
+  }
+  selectedFile(event){
+    this.file=event.target.files[0];
+    const reader = new FileReader();
+  
+    reader.readAsDataURL(this.file);
+    reader.onload=e=> this.image=reader.result;
+    
   }
 }

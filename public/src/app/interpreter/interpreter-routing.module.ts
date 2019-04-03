@@ -3,10 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import {InterpreterComponent} from "./interpreter.component";
 import { ListComponent } from './list/list.component';
 import { AddComponent } from './add/add.component';
+import { LoginComponent } from './auth/login/login.component';
+import {InterpreterGuard} from "./shared/interpreter.guard";
+
 const routes: Routes = [
   {
     path:'interpreters',
     component:InterpreterComponent,
+    canActivate:[InterpreterGuard],
     children:[
       {
         path:'',
@@ -22,6 +26,10 @@ const routes: Routes = [
         component:AddComponent
       }
     ]
+  },
+  {
+    path:'interpreters/auth/login',
+    component:LoginComponent
   }
 ];
 

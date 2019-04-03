@@ -81,16 +81,16 @@ export class RestFulService{
         }
         return this.http.post<any>('https://localhost:8080/api/streamers/edit/'+id,data,option);
     }
-    logoutStreamer():Observable<any>{
+    logoutStreamer(id,token):Observable<any>{
         let option = {
             headers: new HttpHeaders({
                 'Content-type':'Application/json',
-                'Authorization':'Bearer '+this.streamerService.getToken(),
+                'Authorization':'Bearer '+token,
                 'Accept':'appilcation/json'
             }),
-            params: new HttpParams().set('id',this.streamerService.getId())
+
         }
-        return this.http.get<any>('https://localhost:8080/api/streamers/logout',option);
+        return this.http.get<any>('https://localhost:8080/api/streamers/logout?id='+id,option);
     }
     removeStreamer(id:any):Observable<any>{
         let option = {

@@ -57,6 +57,17 @@
                           </div>
                       </div>
                     </div>
+                    <div class="col-md-12 mb-3">
+                      <label for="validationServer02">Avatar <span class="text-danger">(*)</span></label> <br>
+                      <input type="file" 
+                     style="display:none"
+                      class="'form-control'" 
+                      (change)="selectedFile($event)"
+                      name="avatar" formControlName="avatar" #fileInput>
+                      <button class="btn btn-primary" style="margin-right:50px"  (click)="fileInput.click()">Choose File</button>
+                      <img *ngIf="file!=null" [src]="image" width="100px"/>
+                    </div>
+
                   </div>
              
               <hr>

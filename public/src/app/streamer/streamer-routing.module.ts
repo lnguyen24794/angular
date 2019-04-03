@@ -42,7 +42,7 @@ const routes: Routes = [
     ]
   },
   {
-    path:'streamer/auth/login',
+    path:'streamers/auth/login',
     component:LoginComponent
   },
 ];

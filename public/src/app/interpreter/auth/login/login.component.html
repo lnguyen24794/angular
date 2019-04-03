@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-md-2"></div>
+    <div class="col-lg-6 col-md-8 login-box">
+      <div class="col-lg-12 login-key">
+        <i class="fa fa-key" aria-hidden="true"></i>
+      </div>
+      <div class="col-lg-12 login-title"  (click)="demo()">
+        Interpreter Panel
+      </div>
+
+      <div class="col-lg-12 login-form"> 
+        <div class="col-lg-12 login-form">
+         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="form-control-label">EMAIL</label>
+              <input type="text" name="email" formControlName="email" class="form-control">
+              <small class="text-danger" *ngIf="loginForm.controls.email.errors?.required && loginForm.controls.email.dirty">Please enter to the email<br></small>
+              <small class="text-danger" *ngIf="loginForm.controls.email.errors?.minlength && loginForm.controls.email.dirty">Tối thiểu là 10 kí tự<br></small>
+              <small class="text-danger" *ngIf="loginForm.controls.email.errors?.maxlength && loginForm.controls.email.dirty">Tối đa 255 kí tự<br></small>
+              <small class="text-danger" *ngIf="loginForm.controls.email.errors?.email && loginForm.controls.email.dirty">Email chưa đúng định dạng</small>
+            </div>
+            <div class="form-group">
+              <label class="form-control-label">PASSWORD</label>
+              <input type="password" formControlName="password" name = "password" class="form-control" i>
+              <small class="text-danger" *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.dirty">Please enter to the password<br></small>
+              <small class="text-danger" *ngIf="loginForm.controls.password.errors?.minlength && loginForm.controls.password.dirty">Tối thiểu là 8 kí tự<br></small>
+              <small class="text-danger" *ngIf="loginForm.controls.password.errors?.maxlength && loginForm.controls.password.dirty">Tối đa 50 kí tự</small>  
+            </div>
+
+            <div class="col-lg-12 loginbttm">
+              <div class="col-lg-6 login-btm login-text">
+                <!-- Error Message -->
+                <ul class="nav justify-content-center">
+                    <li class="nav-item" *ngFor="let mess of message">
+                       <p>{{mess}}</p>
+                    </li>
+                    
+                </ul>
+              </div>
+              <div class="col-lg-6 login-btm login-button">
+                <button  type="submit" [disabled]= "loginForm.invalid" class="btn btn-outline-primary">LOGIN</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-2"></div>
+    </div>
+  </div>

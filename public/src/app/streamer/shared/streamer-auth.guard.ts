@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot,CanActivate, RouterStateSnapshot, UrlTree ,Router} from '@angular/router';
-import { Observable } from 'rxjs';
 import {StreamerService} from "./services/streamer.service";
 
 @Injectable()
@@ -10,8 +9,11 @@ import {StreamerService} from "./services/streamer.service";
       public streamerService:StreamerService
     ){}
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+      
+      console.log(this.streamerService.getToken());
+      
       if(this.streamerService.getToken()==''){
-        this.router.navigate(['streamer/auth/login']);
+        this.router.navigate(['streamers/auth/login']);
         return false;
       }
       return true;

@@ -32,7 +32,10 @@ export class StreamerService {
   }
   public removeAll(){
  
-    this.save('','','','');
+    this.cookieService.delete('streamer_email');
+    this.cookieService.delete('streamer_id');
+    this.cookieService.delete('streamer_token');
+    this.cookieService.delete('streamer_username');
 
   }
 }

@@ -18,17 +18,18 @@ export class StreamerComponent implements OnInit {
   ngOnInit() {
     
   }
-   async logout(){
-
-    await this.restfulService.logoutStreamer().subscribe(data=>{
+   logout(){
+     const  id =  this.streamerService.getId();
+     const token = this.streamerService.getToken();
+     this.streamerService.removeAll();
+     this.restfulService.logoutStreamer(id,token).subscribe(data=>{
+      console.log(data);
       if(!data.success){
         console.log("Logout is fail");
       }else{
         console.log("Success");
       }
     });
-    this.streamerService.removeAll();
-    console.log(this.streamerService.getToken());
-    this.router.navigate(["/streamer/auth/login"]);
+    this.router.navigate(["/streamers/auth/login"]);
   }
 }
