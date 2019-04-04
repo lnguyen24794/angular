@@ -64,7 +64,7 @@
                       class="'form-control'" 
                       (change)="selectedFile($event)"
                       name="avatar" formControlName="avatar" #fileInput>
-                      <button class="btn btn-primary" style="margin-right:50px"  (click)="fileInput.click()">Choose File</button>
+                      <button type="button" class="btn btn-primary" style="margin-right:50px"  (click)="fileInput.click()">Choose File</button>
                       <img *ngIf="file!=null" [src]="image" width="100px"/>
                     </div>
 

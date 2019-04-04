@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder,FormGroup,Validators} from "@angular/forms";
+import {RestFulService} from "../shared/services/rest-ful.service";
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -17,7 +18,8 @@ export class AddComponent implements OnInit {
   public loading=false;
   public image:any;
   constructor(
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private restfulService:RestFulService
   ) { }
 
   ngOnInit() {
@@ -44,24 +46,27 @@ export class AddComponent implements OnInit {
         Validators.required
       ]]
     });
-    this.formAdd.valueChanges.subscribe(data=>{
-      console.log(data);
-    })
   }
   onSubmit(){
-
+    const fd = new FormData();
+    fd.append('avatar',this.file,this.file.name)
     console.log(this.formAdd.value);
-    
+    this.restfulService.uploadFile(fd).subscribe(data=>{
+      console.log(data);
+    });
   }
   onReset(){
     this.formAdd.reset();
   }
   selectedFile(event){
-    this.file=event.target.files[0];
-    const reader = new FileReader();
+    console.log(event.target.files[0]);
+    if(event.target.files[0]!=undefined){
+      this.file=event.target.files[0];
+      const reader = new FileReader();
   
-    reader.readAsDataURL(this.file);
-    reader.onload=e=> this.image=reader.result;
+      reader.readAsDataURL(this.file);
+      reader.onload= e=> { this.image=reader.result };
+    }
     
   }
 }

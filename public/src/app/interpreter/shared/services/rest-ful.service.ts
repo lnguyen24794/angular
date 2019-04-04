@@ -1,6 +1,14 @@
-import { Injectable } from '@angular/core';
-import {HttpHeaders,HttpClient,HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {
+  Injectable
+} from '@angular/core';
+import {
+  HttpHeaders,
+  HttpClient,
+  HttpParams
+} from "@angular/common/http";
+import {
+  Observable
+} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +18,26 @@ export class RestFulService {
   constructor(
     private http: HttpClient,
 
-  ) { }
-  public interpreterLogin(data:any):Observable<any>{
-        
+  ) {}
+  public interpreterLogin(data: any): Observable < any > {
+
     let option = {
-        headers: new HttpHeaders(
-            {
-                'Content-type':"Application/json"
-            }
-        )
+      headers: new HttpHeaders({
+        'Content-type': "Application/json"
+      })
     }
-    return this.http.post<any>('https://localhost:8080/api/interpreters/login',data,option);
-}
+    return this.http.post < any > ('https://localhost:8080/api/interpreters/login', data, option);
+  }
+  public uploadFile(data: any): Observable < any > {
+
+    let option = {
+      headers: new HttpHeaders({
+        'Content-type': "Application/json"
+      })
+    }
+    return this.http.post < any > ('https://localhost:8080/api/upload', data,{
+      reportProgress:true,
+      observe:'events'
+    });
+  }
 }
